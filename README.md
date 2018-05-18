@@ -1,0 +1,2 @@
+# Jakinator
+Joan's Akinator
