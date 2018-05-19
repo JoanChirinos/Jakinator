@@ -33,7 +33,8 @@ def go():
 
     d = {}
     for i in oldFile:
-        d[i[0]] = i[1]
+        if len(i) == 2:
+            d[i[0]] = i[1]
 
     for x in toAdd:
         t = x.split(",")
