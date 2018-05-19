@@ -123,7 +123,7 @@ public class Jakinator {
             save();
             */
             oldCharacter = currKey + "0," + _map.get(currKey);
-            newQuestion = currKey + newQuestion;
+            newQuestion = currKey + "," + newQuestion;
             newCharacter = currKey + "1," + correctPerson;
             break;
           }
@@ -136,7 +136,7 @@ public class Jakinator {
             save();
             */
             newCharacter = currKey + "1," + _map.get(currKey);
-            newQuestion = currKey + newQuestion;
+            newQuestion = currKey + "," + newQuestion;
             oldCharacter = currKey + "0," + correctPerson;
             break;
           }

@@ -8,7 +8,7 @@ print 'Content-type: text/html\n\n'
 
 def go():
     fs = cgi.FieldStorage()
-    toAdd = [fs.getvalue("newCharacter"), fs.getvalue("question"), fs.getValue("oldCharacter")]
+    toAdd = [fs.getvalue("newCharacter", "help"), fs.getvalue("question", "help pls"), fs.getValue("oldCharacter", "help pl0x")]
 
     straw = open("qa.txt", "rU")
     oldFile = straw.read()
