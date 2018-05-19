@@ -41,7 +41,7 @@ def go():
         d[t[0]] = t[1]
 
     newFile = [i + ',' + d[i] for i in d.keys()]
-    newFile = ','.join(newFile)
+    newFile = '\n'.join(newFile)
 
     straw = open("qa.txt", "w+")
     straw.write(newFile)
