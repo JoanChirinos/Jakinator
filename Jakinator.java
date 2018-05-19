@@ -104,14 +104,14 @@ public class Jakinator {
         System.out.println("\n");
 
         //store new question
-        System.out.println("A yes or no question to differentiate " + _map.get(currKey).substring(1) + " from " + correctPerson + " is:");
+        System.out.println("A yes or no question to differentiate " + _map.get(currKey).substring(1) + " from " + correctPerson.substring(1) + " is:");
         String newQuestion = "Q" + Keyboard.readString();
 
         String newCharacter = "";
         String oldCharacter = "";
 
         while (true) {
-          System.out.println("If the answer to \"" + newQuestion + "\" is yes, then the person is\n\t1. " + correctPerson + "\n\t2. " + _map.get(currKey).substring(1));
+          System.out.println("If the answer to \"" + newQuestion.substring(1) + "\" is yes, then the person is\n\t1. " + correctPerson.substring(1) + "\n\t2. " + _map.get(currKey).substring(1));
           String whichIsRight = Keyboard.readString();
 
           if (whichIsRight.equals("1")) {
@@ -121,9 +121,9 @@ public class Jakinator {
             _map.put(currKey + "1", "A" + correctPerson);
             save();
             */
-            oldCharacter = currKey + "0," + _map.get(currKey);
+            oldCharacter = currKey + "0," + _map.get(currKey).replace(" ", "+").replace("?", "%3F");
             newQuestion = currKey + newQuestion.replace(" ", "+").replace("?", "%3F");
-            newCharacter = currKey + "1," + correctPerson;
+            newCharacter = currKey + "1," + correctPerson.replace(" ", "+").replace("?", "%3F");
             break;
           }
 
@@ -134,9 +134,9 @@ public class Jakinator {
             _map.put(currKey + "0", "A" + correctPerson);
             save();
             */
-            newCharacter = currKey + "1," + _map.get(currKey);
+            newCharacter = currKey + "1," + _map.get(currKey).replace(" ", "+").replace("?", "%3F");
             newQuestion = currKey + newQuestion.replace(" ", "+").replace("?", "%3F");
-            oldCharacter = currKey + "0," + correctPerson.replace(" ", "+");
+            oldCharacter = currKey + "0," + correctPerson.replace(" ", "+").replace("?", "%3F");
             break;
           }
 
@@ -152,6 +152,7 @@ public class Jakinator {
         url += "&question=" + newQuestion;
         //add oldCharacter
         url += "&oldCharacter" + oldCharacter;
+        System.out.println("Trying to go to: " + url.replace(",", "%2C"));
         if (Desktop.isDesktopSupported()) {
           try {
             Desktop.getDesktop().browse(new URI(url));

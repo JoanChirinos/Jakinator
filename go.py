@@ -35,3 +35,5 @@ def go():
                     </body>
                     
                 </html>"""
+
+go()
