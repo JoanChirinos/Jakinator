@@ -16,6 +16,7 @@ import java.util.HashMap;
 import jutils.*;
 import java.awt.Desktop;
 import java.net.URI;
+import java.net.URLEncoder;
 
 public class Jakinator {
 
@@ -121,9 +122,9 @@ public class Jakinator {
             _map.put(currKey + "1", "A" + correctPerson);
             save();
             */
-            oldCharacter = currKey + "0," + _map.get(currKey).replace(" ", "+").replace("?", "%3F");
-            newQuestion = currKey + newQuestion.replace(" ", "+").replace("?", "%3F");
-            newCharacter = currKey + "1," + correctPerson.replace(" ", "+").replace("?", "%3F");
+            oldCharacter = currKey + "0," + _map.get(currKey);
+            newQuestion = currKey + newQuestion;
+            newCharacter = currKey + "1," + correctPerson;
             break;
           }
 
@@ -134,9 +135,9 @@ public class Jakinator {
             _map.put(currKey + "0", "A" + correctPerson);
             save();
             */
-            newCharacter = currKey + "1," + _map.get(currKey).replace(" ", "+").replace("?", "%3F");
-            newQuestion = currKey + newQuestion.replace(" ", "+").replace("?", "%3F");
-            oldCharacter = currKey + "0," + correctPerson.replace(" ", "+").replace("?", "%3F");
+            newCharacter = currKey + "1," + _map.get(currKey);
+            newQuestion = currKey + newQuestion;
+            oldCharacter = currKey + "0," + correctPerson;
             break;
           }
 
@@ -147,12 +148,12 @@ public class Jakinator {
         System.out.println("Thanks very mucho!");
         String url = "http://homer.stuy.edu/~jchirinos/Jakinator/go.py?";
         //add newCharacter
-        url += "newCharacter=" + newCharacter;
+        url += "newCharacter=" + URLEncoder.encode(newCharacter, "UTF-8");
         //add newQuestion
-        url += "&question=" + newQuestion;
+        url += "&question=" + URLEncoder.encode(newQuestion, "UTF-8");
         //add oldCharacter
-        url += "&oldCharacter" + oldCharacter;
-        System.out.println("Trying to go to: " + url.replace(",", "%2C"));
+        url += "&oldCharacter" + URLEncoder.encode(oldCharacter, "UTF-8");
+        System.out.println("Trying to go to: " + url);
         if (Desktop.isDesktopSupported()) {
           try {
             Desktop.getDesktop().browse(new URI(url));
