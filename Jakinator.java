@@ -17,6 +17,10 @@ import jutils.*;
 import java.awt.Desktop;
 import java.net.URI;
 import java.net.URLEncoder;
+import java.net.URL;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Jakinator {
 
@@ -24,19 +28,39 @@ public class Jakinator {
 
   public Jakinator() {
     _map = new HashMap<String, String>();
-    String[] fileContents = FileRW.read("qa.txt").split("\n");
+    String urlContents;
+
+    try {
+      urlContents = readToString("http://homer.stuy.edu/~jchirinos/Jakinator/qa.txt");
+    }
+    catch (Exception e) {
+      System.out.println("something went wrong with reading url");
+      return;
+    }
+
+    String[] fileContents = urlContents.split("\n");
     for (String s : fileContents) {
       String[] kvp = s.split(",");
       _map.put(kvp[0], kvp[1]);
     }
   }
 
-  private void save() {
-    String toSave = "";
-    for (String s : _map.keySet()) {
-      toSave += s + "," + _map.get(s) + "\n";
+  public static String readToString(String targetURL) throws IOException {
+    URL url = new URL(targetURL);
+    BufferedReader bufferedReader = new BufferedReader(
+    new InputStreamReader(url.openStream()));
+
+    StringBuilder stringBuilder = new StringBuilder();
+
+    String inputLine;
+    while ((inputLine = bufferedReader.readLine()) != null)
+    {
+      stringBuilder.append(inputLine);
+      stringBuilder.append(System.lineSeparator());
     }
-    FileRW.write(toSave, "qa.txt");
+
+    bufferedReader.close();
+    return stringBuilder.toString().trim();
   }
 
   public void run() {
@@ -158,7 +182,6 @@ public class Jakinator {
         catch (Exception e) {
           System.out.println("whoa encoding went wrong");
         }
-        System.out.println("Trying to go to: " + url);
         if (Desktop.isDesktopSupported()) {
           try {
             Desktop.getDesktop().browse(new URI(url));
@@ -168,6 +191,7 @@ public class Jakinator {
           }
         }
 
+        return;
       }
 
     }
