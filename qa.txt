@@ -1,0 +1,25 @@
+0110,QIs your character a Democrat?
+0111,ABarack Obama
+010,QIs your character an actor?
+011,QIs your character black?
+00,QIs your character a politician?
+01,QIs your character a politician?
+01101,ABernie Sanders
+01100,ADonald Trump
+01000,QIs your character a human?
+01001,AJim Halpert
+0,QIs your character a male?
+00010,ATaylor Swift
+00011,AMaggie Lawson
+0000,AKarly-Marina Loaiza (Kali Uchis)
+0001,QWas your character in the TV show Psych?
+0101,QDid your character act in the TV show Psych?
+0100,QIs your character from The Office?
+001,AHillary Clinton
+000,QIs your character blonde?
+0100011,AShawn Spencer
+0100010,AJohn Wick
+01011,AJames Roday
+01010,AAdam Sandler
+010001,QIs your character from the TV show Psych?
+010000,ADaffy Duck
