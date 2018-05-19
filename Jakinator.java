@@ -30,6 +30,14 @@ public class Jakinator {
     }
   }
 
+  private void save() {
+    String toSave = "";
+    for (String s : _map.keySet()) {
+      toSave += s + "," + _map.get(s) + "\n";
+    }
+    FileRW.write(toSave, "qa.txt");
+  }
+
   public void run() {
     String currKey = "0";
     while (true) {
@@ -99,25 +107,53 @@ public class Jakinator {
         System.out.println("A yes or no question to differentiate " + _map.get(currKey).substring(1) + " from " + correctPerson + " is:");
         String newQuestion = "Q" + Keyboard.readString();
 
-        while (true) {
+        String newCharacter = "";
 
+        while (true) {
           System.out.println("If the answer to \"" + newQuestion + "\" is yes, then the person is\n\t1. " + correctPerson + "\n\t2. " + _map.get(currKey).substring(1));
           String whichIsRight = Keyboard.readString();
 
-          if (!whichIsRight.equals("1") && !whichIsRight.equals("2")) System.out.println("Invalid answer...\n\n");
-          else break;
+          if (whichIsRight.equals("1")) {
+            /*
+            _map.put(currKey + "0", _map.get(currKey));
+            _map.put(currKey, "Q" + newQuestion);
+            _map.put(currKey + "1", "A" + correctPerson);
+            save();
+            */
+            String oldCharacter = currKey + "0," + _map.get(currKey);
+            newQuestion = currKey + newQuestion.replace(" ", "+").replace("?", "%3F");
+            newCharacter = currKey + "1," + correctPerson;
+            break;
+          }
 
+          else if (whichIsRight.equals("2")) {
+            /*
+            _map.put(currKey + "1", _map.get(currKey));
+            _map.put(currKey, "Q" + newQuestion);
+            _map.put(currKey + "0", "A" + correctPerson);
+            save();
+            */
+            newCharacter = currKey + "1," + _map.get(currKey);
+            newQuestion = currKey + newQuestion.replace(" ", "+").replace("?", "%3F");
+            String oldCharacter = currKey + "0," + correctPerson.replace(" ", "+");
+            break;
+          }
+
+          else System.out.println("Invalid answer...\n\n");
         }
+
 
         System.out.println("Thanks very mucho!");
         String url = "http://homer.stuy.edu/~jchirinos/Jakinator/go.py?";
         //add newCharacter
-        url += "newCharacter=" + newCharacter.replace(" ", "+");
+        url += "newCharacter=" + newCharacter;
         //add newQuestion
-        url += "&question=" + 
+        url += "&question=" + newQuestion;
+        //add oldCharacter
+        url += "&oldCharacter" + oldCharacter;
         if (Desktop.isDesktopSupported()) {
           try {
-            Desktop.getDesktop().browse(new URI(newCharacter.replace(" ", "+") + "&question=" + newQuestion.));
+            Desktop.getDesktop().browse(new URI(url));
           }
           catch (Exception e) {
             System.out.println("whoa");
