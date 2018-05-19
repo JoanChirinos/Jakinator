@@ -108,6 +108,7 @@ public class Jakinator {
         String newQuestion = "Q" + Keyboard.readString();
 
         String newCharacter = "";
+        String oldCharacter = "";
 
         while (true) {
           System.out.println("If the answer to \"" + newQuestion + "\" is yes, then the person is\n\t1. " + correctPerson + "\n\t2. " + _map.get(currKey).substring(1));
