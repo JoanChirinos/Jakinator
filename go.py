@@ -13,7 +13,7 @@ def go():
     
     #print "<html><body>"
     for i in fs.keys():
-        toAdd += fs.getvalue(i)
+        toAdd += [fs.getvalue(i)]
 
     #print "</body></html>"
 
