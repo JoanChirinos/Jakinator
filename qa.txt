@@ -1,11 +1,15 @@
-0,QIs your character a male?
 00,QIs your character a politician?
+01,QIs your character a politician?
+01101,ABernie Sanders
+01001,AJim Halpert
+01100,ADonald Trump
+010,QIs your character an actor?
+0,QIs your character a male?
 011,QIs your character black?
 000,ATaylor Swift
-01,QIs your character a politician?
 001,AHillary Clinton
 0101,AAdam Sandler
-0110,ABernie Sanders
+01000,AJohn Wick
+0110,QIs your character a Democrat?
 0111,ABarack Obama
-0100,AJohn Wick
-010,QIs your character an actor?
+0100,QIs your character from The Office?

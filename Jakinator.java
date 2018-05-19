@@ -14,6 +14,8 @@ Like Akinator, but Joan's version
 
 import java.util.HashMap;
 import jutils.*;
+import java.awt.Desktop;
+import java.net.URI;
 
 public class Jakinator {
 
@@ -26,14 +28,6 @@ public class Jakinator {
       String[] kvp = s.split(",");
       _map.put(kvp[0], kvp[1]);
     }
-  }
-
-  private void save() {
-    String toSave = "";
-    for (String s : _map.keySet()) {
-      toSave += s + "," + _map.get(s) + "\n";
-    }
-    FileRW.write(toSave, "qa.txt");
   }
 
   public void run() {
@@ -97,35 +91,37 @@ public class Jakinator {
 
         //store correct person
         System.out.print("You were thinking of: ");
-        String correctPerson = Keyboard.readString();
+        String correctPerson = "A" + Keyboard.readString();
 
         System.out.println("\n");
 
         //store new question
         System.out.println("A yes or no question to differentiate " + _map.get(currKey).substring(1) + " from " + correctPerson + " is:");
-        String newQuestion = Keyboard.readString();
+        String newQuestion = "Q" + Keyboard.readString();
 
         while (true) {
+
           System.out.println("If the answer to \"" + newQuestion + "\" is yes, then the person is\n\t1. " + correctPerson + "\n\t2. " + _map.get(currKey).substring(1));
           String whichIsRight = Keyboard.readString();
 
-          if (whichIsRight.equals("1")) {
-            _map.put(currKey + "0", _map.get(currKey));
-            _map.put(currKey, "Q" + newQuestion);
-            _map.put(currKey + "1", "A" + correctPerson);
-            save();
-            return;
-          }
+          if (!whichIsRight.equals("1") && !whichIsRight.equals("2")) System.out.println("Invalid answer...\n\n");
+          else break;
 
-          else if (whichIsRight.equals("2")) {
-            _map.put(currKey + "1", _map.get(currKey));
-            _map.put(currKey, "Q" + newQuestion);
-            _map.put(currKey + "0", "A" + correctPerson);
-            save();
-            return;
-          }
+        }
 
-          else System.out.println("Invalid answer...\n\n");
+        System.out.println("Thanks very mucho!");
+        String url = "http://homer.stuy.edu/~jchirinos/Jakinator/go.py?";
+        //add newCharacter
+        url += "newCharacter=" + newCharacter.replace(" ", "+");
+        //add newQuestion
+        url += "&question=" + 
+        if (Desktop.isDesktopSupported()) {
+          try {
+            Desktop.getDesktop().browse(new URI(newCharacter.replace(" ", "+") + "&question=" + newQuestion.));
+          }
+          catch (Exception e) {
+            System.out.println("whoa");
+          }
         }
 
       }
