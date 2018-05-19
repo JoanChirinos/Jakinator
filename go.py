@@ -8,22 +8,28 @@ print 'Content-type: text/html\n\n'
 
 def go():
     fs = cgi.FieldStorage()
+
+    toAdd = []
+    
+    #print "<html><body>"
+    for i in fs.keys():
+        toAdd += fs.getvalue(i)
+
+    #print "</body></html>"
+
     #toAdd = [fs.getvalue("newCharacter"), fs.getvalue("question"), fs.getValue("oldCharacter")]
-##
+
 ##    straw = open("qa.txt", "rU")
 ##    oldFile = straw.read()
 ##    straw.close()
 
-    #goingToAdd = "\n" + toAdd[1] + "\n" + toAdd[2] + "\n" + toAdd[0]
+    goingToAdd = "\n" + toAdd[1] + "\n" + toAdd[2] + "\n" + toAdd[0]
 
-    #print "<html><body><p>" + goingToAdd + "</p></body></html>"
+    print "<html><body><p>" + goingToAdd + "</p></body></html>"
 
-    print "<html><body>"
-    for i in fs.keys():
-        print "<p>" + i + "</p>"
-    print "</body></html>"
     
-##
+    
+
 ##    oldFile += goingToAdd
 ##
 ##    straw = open("qa.txt", "w+")
