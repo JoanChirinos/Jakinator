@@ -153,7 +153,7 @@ public class Jakinator {
           //add newQuestion
           url += "&question=" + URLEncoder.encode(newQuestion, "UTF-8");
           //add oldCharacter
-          url += "&oldCharacter" + URLEncoder.encode(oldCharacter, "UTF-8");
+          url += "&oldCharacter=" + URLEncoder.encode(oldCharacter, "UTF-8");
         }
         catch (Exception e) {
           System.out.println("whoa encoding went wrong");
