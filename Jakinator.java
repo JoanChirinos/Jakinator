@@ -121,7 +121,7 @@ public class Jakinator {
             _map.put(currKey + "1", "A" + correctPerson);
             save();
             */
-            String oldCharacter = currKey + "0," + _map.get(currKey);
+            oldCharacter = currKey + "0," + _map.get(currKey);
             newQuestion = currKey + newQuestion.replace(" ", "+").replace("?", "%3F");
             newCharacter = currKey + "1," + correctPerson;
             break;
@@ -136,7 +136,7 @@ public class Jakinator {
             */
             newCharacter = currKey + "1," + _map.get(currKey);
             newQuestion = currKey + newQuestion.replace(" ", "+").replace("?", "%3F");
-            String oldCharacter = currKey + "0," + correctPerson.replace(" ", "+");
+            oldCharacter = currKey + "0," + correctPerson.replace(" ", "+");
             break;
           }
 
