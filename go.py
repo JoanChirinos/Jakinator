@@ -22,8 +22,8 @@ def go():
 
     print "<html><body>"
     for i in fs.keys():
-        print "key: " + i + "\n"
-    print "</body></html>
+        print "<p>key: " + i + "</p>"
+    print "</body></html>"
 
 ##    print """
 ##                <html>
