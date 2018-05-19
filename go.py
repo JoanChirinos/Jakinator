@@ -18,7 +18,7 @@ def go():
     #ID2,A<answer>
     #ID3,Q<question>
     #...
-    straw = open("../qa.txt", "rU")
+    straw = open("../qa/qa.txt", "rU")
     oldFile = straw.read()
     straw.close()
 
