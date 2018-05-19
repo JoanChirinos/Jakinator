@@ -148,11 +148,16 @@ public class Jakinator {
         System.out.println("Thanks very mucho!");
         String url = "http://homer.stuy.edu/~jchirinos/Jakinator/go.py?";
         //add newCharacter
-        url += "newCharacter=" + URLEncoder.encode(newCharacter, "UTF-8");
-        //add newQuestion
-        url += "&question=" + URLEncoder.encode(newQuestion, "UTF-8");
-        //add oldCharacter
-        url += "&oldCharacter" + URLEncoder.encode(oldCharacter, "UTF-8");
+        try {
+          url += "newCharacter=" + URLEncoder.encode(newCharacter, "UTF-8");
+          //add newQuestion
+          url += "&question=" + URLEncoder.encode(newQuestion, "UTF-8");
+          //add oldCharacter
+          url += "&oldCharacter" + URLEncoder.encode(oldCharacter, "UTF-8");
+        }
+        catch (Exception e) {
+          System.out.println("whoa encoding went wrong");
+        }
         System.out.println("Trying to go to: " + url);
         if (Desktop.isDesktopSupported()) {
           try {
